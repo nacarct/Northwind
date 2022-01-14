@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class OrderDetailRepository : GenericRepository<OrderDetail>, IOrderDetailRepository
     {
-        public OrderDetailRepository(DbContext context, DbSet<OrderDetail> dbSet) : base(context, dbSet)
+        public OrderDetailRepository(DbContext context) : base(context)
         {
             //Constructor
         }

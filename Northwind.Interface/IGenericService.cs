@@ -12,13 +12,15 @@ namespace Northwind.Interface
     {
         IResponse<List<TDto>> GetAll();
         IResponse<List<TDto>> GetAll(Expression<Func<T, bool>> expression);
+        List<TDto> GetAllList(Expression<Func<T, bool>> expression);
         IResponse<TDto> Find(int id);
+        IResponse<TDto> Find(string id);
         IQueryable<T> GetQueryable();
         IResponse<TDto> Add(TDto entity,bool saveChanges = true);
         Task<TDto> AddAsync(TDto entity);
         TDto Update(TDto entity);
         Task<TDto> UpdateAsync(TDto entity);
-        bool DeleteById(int id);
+        IResponse<bool> DeleteById(int id, bool saveChanges);
         Task<bool> DeleteByIdAsync(int id);
         bool Delete(TDto entity);
         Task<bool> DeleteAsync(TDto entity);

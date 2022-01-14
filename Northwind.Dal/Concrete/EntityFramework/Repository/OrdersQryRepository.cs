@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class OrdersQryRepository : GenericRepository<OrdersQry>, IOrdersQryRepository
     {
-        public OrdersQryRepository(DbContext context, DbSet<OrdersQry> dbSet) : base(context, dbSet)
+        public OrdersQryRepository(DbContext context) : base(context)
         {
             //Constructor
         }

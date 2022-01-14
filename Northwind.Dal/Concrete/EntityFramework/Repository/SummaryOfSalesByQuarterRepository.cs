@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class SummaryOfSalesByQuarterRepository : GenericRepository<SummaryOfSalesByQuarter>, ISummaryOfSalesByQuarterRepository
     {
-        public SummaryOfSalesByQuarterRepository(DbContext context, DbSet<SummaryOfSalesByQuarter> dbSet) : base(context, dbSet)
+        public SummaryOfSalesByQuarterRepository(DbContext context) : base(context)
         {
             //Constructor
         }

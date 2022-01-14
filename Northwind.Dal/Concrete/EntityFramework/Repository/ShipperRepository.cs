@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class ShipperRepository : GenericRepository<Shipper>, IShipperRepository
     {
-        public ShipperRepository(DbContext context, DbSet<Shipper> dbSet) : base(context, dbSet)
+        public ShipperRepository(DbContext context) : base(context)
         {
             //Constructor
         }

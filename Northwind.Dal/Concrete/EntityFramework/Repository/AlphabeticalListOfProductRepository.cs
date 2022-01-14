@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class AlphabeticalListOfProductRepository:GenericRepository<AlphabeticalListOfProduct>,IAlphabeticalListOfProductRepository
     {
-        public AlphabeticalListOfProductRepository(DbContext context, DbSet<AlphabeticalListOfProduct> dbSet) : base(context, dbSet)
+        public AlphabeticalListOfProductRepository(DbContext context) : base(context)
         {
             //Constructor
         }

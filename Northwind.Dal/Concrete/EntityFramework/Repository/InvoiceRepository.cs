@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class InvoiceRepository : GenericRepository<Invoice>, IInvoiceRepository
     {
-        public InvoiceRepository(DbContext context, DbSet<Invoice> dbSet) : base(context, dbSet)
+        public InvoiceRepository(DbContext context) : base(context)
         {
             //Constructor
         }

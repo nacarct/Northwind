@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class CustomerAndSuppliersByCityRepository : GenericRepository<CustomerAndSuppliersByCity>, ICustomerAndSuppliersByCityRepository
     {
-        public CustomerAndSuppliersByCityRepository(DbContext context, DbSet<CustomerAndSuppliersByCity> dbSet) : base(context, dbSet)
+        public CustomerAndSuppliersByCityRepository(DbContext context) :base(context)
         {
             //Constructor
         }

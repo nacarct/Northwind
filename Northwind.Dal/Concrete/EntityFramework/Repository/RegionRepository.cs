@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class RegionRepository : GenericRepository<Region>, IRegionRepository
     {
-        public RegionRepository(DbContext context, DbSet<Region> dbSet) : base(context, dbSet)
+        public RegionRepository(DbContext context) : base(context)
         {
             //Constructor
         }

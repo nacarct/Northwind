@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public ProductRepository(DbContext context, DbSet<Product> dbSet) : base(context, dbSet)
+        public ProductRepository(DbContext context) : base(context)
         {
             //Constructor
         }

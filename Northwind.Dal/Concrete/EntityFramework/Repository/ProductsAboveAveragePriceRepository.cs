@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class ProductsAboveAveragePriceRepository : GenericRepository<ProductsAboveAveragePrice>, IProductsAboveAveragePriceRepository
     {
-        public ProductsAboveAveragePriceRepository(DbContext context, DbSet<ProductsAboveAveragePrice> dbSet) : base(context, dbSet)
+        public ProductsAboveAveragePriceRepository(DbContext context) : base(context)
         {
             //Constructor
         }

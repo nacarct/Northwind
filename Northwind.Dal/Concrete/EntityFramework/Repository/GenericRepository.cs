@@ -21,7 +21,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
         public GenericRepository(DbContext context)
         {
             _context = context;
-            //_dbSet = dbSet;
+            _dbSet = this._context.Set<T>();
             _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
@@ -43,6 +43,11 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
         }
 
         public T Find(int id)
+        {
+            return _dbSet.Find(id);
+        }
+
+        public T Find(string id)
         {
             return _dbSet.Find(id);
         }

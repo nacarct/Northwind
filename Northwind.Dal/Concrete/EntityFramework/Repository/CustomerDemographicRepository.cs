@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class CustomerDemographicRepository : GenericRepository<CustomerDemographic>, ICustomerDemographicRepository
     {
-        public CustomerDemographicRepository(DbContext context, DbSet<CustomerDemographic> dbSet) : base(context, dbSet)
+        public CustomerDemographicRepository(DbContext context) : base(context)
         {
             //Constructor
         }

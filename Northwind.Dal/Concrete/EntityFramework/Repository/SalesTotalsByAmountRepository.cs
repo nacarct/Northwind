@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class SalesTotalsByAmountRepository : GenericRepository<SalesTotalsByAmount>, ISalesTotalsByAmountRepository
     {
-        public SalesTotalsByAmountRepository(DbContext context, DbSet<SalesTotalsByAmount> dbSet) : base(context, dbSet)
+        public SalesTotalsByAmountRepository(DbContext context) : base(context)
         {
             //Constructor
         }

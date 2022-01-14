@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
-        public CategoryRepository(DbContext context, DbSet<Category> dbSet) : base(context, dbSet)
+        public CategoryRepository(DbContext context) : base(context)
         {
             //Constructor
         }

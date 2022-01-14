@@ -7,7 +7,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 {
     public class SupplierRepository : GenericRepository<Supplier>, ISupplierRepository
     {
-        public SupplierRepository(DbContext context, DbSet<Supplier> dbSet) : base(context, dbSet)
+        public SupplierRepository(DbContext context) : base(context)
         {
             //Constructor
         }

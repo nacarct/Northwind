@@ -9,6 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Status" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Northwind.Dal\Northwind.Dal.csproj" />
     <ProjectReference Include="..\Northwind.Interface\Northwind.Interface.csproj" />
   </ItemGroup>
