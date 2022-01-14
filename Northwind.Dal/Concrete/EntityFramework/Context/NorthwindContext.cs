@@ -1,18 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Northwind.Entity.Models;
 
 namespace Northwind.Dal.Concrete.EntityFramework.Context
 {
     public partial class NorthwindContext:DbContext
     {
-        public NorthwindContext()
-        {
-            //Constructor
-        }
+        private IConfiguration _configuration;
+
+        // Db Connection 1
+        //public NorthwindContext(IConfiguration configuration)
+        //{
+        //    _configuration = configuration;
+        //}
 
         public NorthwindContext(DbContextOptions<NorthwindContext> options) : base(options)
         {
             //DbOptions
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                //optionsBuilder.UseSqlServer("Server=localhost;Database=NORTHWND;Trusted_Connection=true;");
+                //optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlServer"));
+            }
         }
 
         public virtual DbSet<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get; set; }
@@ -45,13 +58,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=NORTHWND;Trusted_Connection=true;");
-            }
-        }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

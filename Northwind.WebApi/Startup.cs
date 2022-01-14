@@ -37,9 +37,20 @@ namespace Northwind.WebApi
             #endregion
 
             #region Application Context
+            // Db Connection 1
+            //services.AddDbContext<NorthwindContext>();
+            //services.AddScoped<DbContext, NorthwindContext>();
 
-            services.AddDbContext<NorthwindContext>();
+            //Db Connection 2
             services.AddScoped<DbContext, NorthwindContext>();
+            services.AddDbContext<NorthwindContext>(opt =>
+            {
+                opt.UseSqlServer(Configuration.GetConnectionString("SqlServer"), 
+                    sqlOption =>
+                {
+                    sqlOption.MigrationsAssembly("Northwind.Dal");
+                });
+            });
 
             #endregion
 
@@ -68,6 +79,8 @@ namespace Northwind.WebApi
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             #endregion
+
+            
 
 
             services.AddControllers();
