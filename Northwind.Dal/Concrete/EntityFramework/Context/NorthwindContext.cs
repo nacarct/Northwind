@@ -21,8 +21,12 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseLazyLoadingProxies(useLazyLoadingProxies: true);
+
             if (!optionsBuilder.IsConfigured)
             {
+                //use lazy loading
+               
                 //optionsBuilder.UseSqlServer("Server=localhost;Database=NORTHWND;Trusted_Connection=true;");
                 //optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlServer"));
             }

@@ -12,11 +12,11 @@ namespace Northwind.Bll
 {
     public class OrderManager:BllBase<Order,DtoOrder>,IOrderService
     {
-        public readonly IOrderRepository orderRepository;
+        private readonly IOrderRepository orderRepository;
 
-        public OrderManager(IServiceProvider serviceProvider) : base(serviceProvider)
+        public OrderManager(IServiceProvider serviceProvider, IOrderRepository orderRepository) : base(serviceProvider)
         {
-
+            this.orderRepository = orderRepository;
         }
 
         public IQueryable OrderReport()
