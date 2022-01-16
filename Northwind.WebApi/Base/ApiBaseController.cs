@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Northwind.Entity.Base;
 using Northwind.Entity.IBase;
 using Northwind.Interface;
@@ -10,6 +12,7 @@ namespace Northwind.WebApi.Base
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ApiBaseController<TInterface,T,TDto> : ControllerBase where TInterface : IGenericService<T,TDto> where T : EntityBase where TDto : DtoBase
     {
         private readonly TInterface _genericService;

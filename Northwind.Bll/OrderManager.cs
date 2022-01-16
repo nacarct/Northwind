@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Northwind.Bll.Base;
 using Northwind.Dal.Abstract;
 using Northwind.Entity.Dto;
@@ -12,16 +12,16 @@ namespace Northwind.Bll
 {
     public class OrderManager:BllBase<Order,DtoOrder>,IOrderService
     {
-        private readonly IOrderRepository orderRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrderManager(IServiceProvider serviceProvider, IOrderRepository orderRepository) : base(serviceProvider)
+        public OrderManager(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.orderRepository = orderRepository;
+            _orderRepository = serviceProvider.GetService<IOrderRepository>();
         }
 
         public IQueryable OrderReport()
         {
-            return orderRepository.OrderReport();
+            return _orderRepository.OrderReport();
         }
     }
 }

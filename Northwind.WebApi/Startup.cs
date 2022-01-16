@@ -10,9 +10,13 @@ using Northwind.Bll;
 using Northwind.Interface;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Northwind.Dal.Abstract;
 using Northwind.Dal.Concrete.EntityFramework.Context;
 using Northwind.Dal.Concrete.EntityFramework.Repository;
@@ -32,8 +36,28 @@ namespace Northwind.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            
             #region Jwt Token Service
+            //JwtSecurityTokenHandler tokenHandler = 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(cfg =>
+            {
+                cfg.SaveToken = true;
+                cfg.RequireHttpsMetadata = false;
 
+                cfg.TokenValidationParameters = new TokenValidationParameters
+                {
+                    RoleClaimType = "Roles",
+                    ClockSkew = TimeSpan.FromMinutes(5),
+                    ValidateIssuer = true,
+                    ValidIssuer = Configuration["Tokens:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["Tokens:Issuer"], //ValidAudience = Configuration["Tokens:Audience"], Audience If Different
+                    RequireSignedTokens = true,
+                    RequireExpirationTime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:key"]))
+                };
+            });
             #endregion
 
             #region Application Context
@@ -60,7 +84,7 @@ namespace Northwind.WebApi
 
             services.AddScoped<IOrderService, OrderManager>();
             services.AddScoped<ICustomerService, CustomerManager>();
-
+            services.AddScoped<IUserService, UserManager>();
             #endregion
 
             //-------------------------------------------------------------------
@@ -69,7 +93,7 @@ namespace Northwind.WebApi
 
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-
+            services.AddScoped<IUserRepository, UserRepository>();
             #endregion
 
             //-------------------------------------------------------------------
@@ -103,6 +127,8 @@ namespace Northwind.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

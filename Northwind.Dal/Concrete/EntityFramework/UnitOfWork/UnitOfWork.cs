@@ -68,7 +68,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.UnitOfWork
                 _transaction = null;
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -93,7 +93,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.UnitOfWork
 
                     return result;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     transaction.Rollback();
                     return 0;

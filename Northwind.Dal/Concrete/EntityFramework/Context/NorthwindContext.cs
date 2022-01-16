@@ -6,7 +6,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
 {
     public partial class NorthwindContext:DbContext
     {
-        private IConfiguration _configuration;
+        //private IConfiguration _configuration;
 
         // Db Connection 1
         //public NorthwindContext(IConfiguration configuration)
@@ -32,6 +32,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
             }
         }
 
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CategorySalesFor1997> CategorySalesFor1997s { get; set; }
@@ -62,11 +63,15 @@ namespace Northwind.Dal.Concrete.EntityFramework.Context
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
 
-        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.UserId).HasColumnName("UserId");
+            });
 
             modelBuilder.Entity<AlphabeticalListOfProduct>(entity =>
             {
