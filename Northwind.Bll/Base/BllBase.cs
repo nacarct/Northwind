@@ -17,16 +17,12 @@ namespace Northwind.Bll.Base
         #region Variables
 
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IServiceProvider _serviceProvider;
         private readonly IGenericRepository<T> _repository;
-        //private readonly Mapper _mapper;
 
-        public BllBase(IServiceProvider serviceProvider)
+        protected BllBase(IServiceProvider serviceProvider)
         {
             _unitOfWork = serviceProvider.GetService<IUnitOfWork>();
-            _repository = _unitOfWork.GetRepository<T>();
-            _serviceProvider = serviceProvider;
-            //_mapper = new Mapper((IConfigurationProvider) serviceProvider);
+            _repository = _unitOfWork!.GetRepository<T>();
         }
 
         #endregion
@@ -35,9 +31,8 @@ namespace Northwind.Bll.Base
         {
             try
             {
-                var resolvedResut = "";
-                var TResult = _repository.Add(ObjectMapper.Mapper.Map<T>(entity));
-                resolvedResut = String.Join(',', TResult.GetType().GetProperties().Select(x => $" * {x.Name}"));
+                var result = _repository.Add(ObjectMapper.Mapper.Map<T>(entity));
+                //var resolvedResult = string.Join(',', result.GetType().GetProperties().Select(x => $" * {x.Name}"));
                 
                 if(saveChanges)
                     Save();
@@ -46,7 +41,7 @@ namespace Northwind.Bll.Base
                 {
                     StatusCode = StatusCodes.Status200OK,
                     Message = "Success",
-                    Data = ObjectMapper.Mapper.Map<T, TDto>(TResult)
+                    Data = ObjectMapper.Mapper.Map<T, TDto>(result)
                 };
             }
             catch (Exception e)

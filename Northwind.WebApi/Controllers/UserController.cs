@@ -15,7 +15,7 @@ namespace Northwind.WebApi.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         public UserController(IUserService userService)
         {
@@ -34,6 +34,25 @@ namespace Northwind.WebApi.Controllers
             catch (Exception e)
             {
                 return new Response<DtoUserToken>()
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                    Message = $"Error : {e.Message}",
+                    Data = null
+                };
+            }
+        }
+        
+        [HttpPost("Register")]
+        [AllowAnonymous]
+        public IResponse<DtoRegisterUser> Register(DtoRegisterUser register)
+        {
+            try
+            {
+                return _userService.Register(register);
+            }
+            catch (Exception e)
+            {
+                return new Response<DtoRegisterUser>()
                 {
                     StatusCode = StatusCodes.Status500InternalServerError,
                     Message = $"Error : {e.Message}",

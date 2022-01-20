@@ -14,7 +14,7 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
 
         public IQueryable CategoryReport()
         {
-            return _dbSet.AsQueryable();
+            return null;
         }
     }
 }

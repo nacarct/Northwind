@@ -1,26 +1,21 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Northwind.Bll;
 using Northwind.Interface;
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Northwind.Bll.Concrete;
 using Northwind.Dal.Abstract;
 using Northwind.Dal.Concrete.EntityFramework.Context;
 using Northwind.Dal.Concrete.EntityFramework.Repository;
 using Northwind.Dal.Concrete.EntityFramework.UnitOfWork;
+using Northwind.Entity.Models;
 
 namespace Northwind.WebApi
 {
@@ -81,19 +76,37 @@ namespace Northwind.WebApi
             //-------------------------------------------------------------------
 
             #region Service Section
-
             services.AddScoped<IOrderService, OrderManager>();
             services.AddScoped<ICustomerService, CustomerManager>();
             services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICustomerCustomerDemoService, CustomerCustomerDemoManager>();
+            services.AddScoped<ICustomerDemographicService, CustomerDemographicManager>();
+            services.AddScoped<IEmployeeService, EmployeeManager>();
+            services.AddScoped<IEmployeeTerritoryService, EmployeeTerritoryManager>();
+            services.AddScoped<IOrderDetailService, OrderDetailManager>();
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IRegionService, RegionManager>();
+            services.AddScoped<IShipperService, ShipperManager>();
+            services.AddScoped<ITerritoryService, TerritoryManager>();
             #endregion
 
             //-------------------------------------------------------------------
 
             #region Repository Section
-
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICustomerCustomerDemoRepository, CustomerCustomerDemoRepository>();
+            services.AddScoped<ICustomerDemographicRepository, CustomerDemographicRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeTerritoryRepository, EmployeeTerritoryRepository>();
+            services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IRegionRepository, RegionRepository>();
+            services.AddScoped<IShipperRepository, ShipperRepository>();
+            services.AddScoped<ITerritoryRepository, TerritoryRepository>();
             #endregion
 
             //-------------------------------------------------------------------

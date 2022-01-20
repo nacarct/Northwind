@@ -18,7 +18,7 @@ namespace Northwind.WebApi.Controllers
     [Route("api/[controller]")]
     public class OrderController : ApiBaseController<IOrderService,Order,DtoOrder>
     {
-        private IOrderService _orderService;
+        private readonly IOrderService _orderService;
 
         public OrderController(IOrderService genericService) : base(genericService)
         {

@@ -16,5 +16,14 @@ namespace Northwind.Dal.Concrete.EntityFramework.Repository
         {
             return _dbSet.FirstOrDefault(u => u.UserCode == login.UserCode && u.Password == login.Password);
         }
+
+        public User Register(User register)
+        {
+            _context.Entry(register).State = EntityState.Added;
+            _context.Add(register);
+            _context.SaveChanges();
+
+            return register;
+        }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Northwind.Entity.Dto;
 
-namespace Northwind.Bll
+namespace Northwind.Bll.Concrete
 {
     public class TokenManager
     {
